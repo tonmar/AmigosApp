@@ -15,7 +15,9 @@ mongoose.connect('mongodb://admin:admin@ds127065.mlab.com:27065/amigodb', functi
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-
+app.get('*', function(req,res){
+ res.sendFile(__dirname + '/frontend/index.html')
+})
 app.use(express.static(__dirname + '/frontend'))
 
 app.listen(3000, function(err){
